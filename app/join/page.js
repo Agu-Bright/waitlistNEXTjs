@@ -27,7 +27,6 @@ export default function Join() {
   const [textContent, setTextContent] = useState("");
   const [top, setTop] = useState("100vh");
 
-  top && console.log(top);
   const openModal = () => {
     const modal = document.getElementById("myModal");
     modal.style.top = 0;
@@ -51,7 +50,6 @@ export default function Join() {
         }, 1000);
       } else {
         position -= 10;
-        console.log(position);
         setTop(`${position}`);
       }
     }, 10);
@@ -71,16 +69,13 @@ export default function Join() {
       if (Response.ok) {
         // router.push("/countdown")
         const data = await Response.json();
-        console.log(data);
         setName(`${data.firstName}`);
         openModal();
-        console.log("success");
       }
       if (!Response.ok) {
         setOpen(true);
       }
     } catch (error) {
-      console.log(error);
     } finally {
       setSubmiting(false);
     }
@@ -90,7 +85,6 @@ export default function Join() {
     (async () => {
       const response = await fetch("/api/waitlist/new");
       const data = await response.json();
-      console.log(data);
       setLength(data.length);
     })();
   }, []);
